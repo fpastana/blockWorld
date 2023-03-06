@@ -101,10 +101,10 @@ class BlockWorld
             $result .= "\r\n";
         }
 
-        return $result;
+        return trim($result);
     }
 
-    public function readTxtFile(string $txtAddress, bool $printInput = false): ?string
+    public function readTxtFile(string $txtAddress): ?string
     {
         $i = 0;
 

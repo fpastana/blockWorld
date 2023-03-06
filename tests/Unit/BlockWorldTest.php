@@ -6,8 +6,92 @@ use BlockWorld\Library\BlockWorld;
 
 final class BlockWorldTest extends TestCase
 {
-    public function testInstantiateBlockWorld(): void
+    public function testBlockWorldQuit(): void
     {
         $blockWorld = new BlockWorld();
+        $result = $blockWorld->quit();
+
+        $this->assertSame('', $result);
+    }
+
+    public function testBlockWorldWhenBlocksDifferentThanNull(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7: 7\r\n8: 8\r\n9: 9";
+
+        $this->assertSame($result, $compiled);
+    }
+
+    public function testMoveOnto(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $blockWorld->moveOnto(9, 1);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1 9\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7: 7\r\n8: 8\r\n9:";
+
+        $this->assertSame($result, $compiled);
+    }
+
+    public function testMoveOver(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $blockWorld->moveOnto(9, 1);
+        $blockWorld->moveOver(8, 1);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1 9 8\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7: 7\r\n8:\r\n9:";
+
+        $this->assertSame($result, $compiled);
+    }
+
+    public function testPileOver(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $blockWorld->moveOnto(9, 1);
+        $blockWorld->moveOver(8, 1);
+        $blockWorld->pileOver(9, 4);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1\r\n2: 2\r\n3: 3\r\n4: 4 9 8\r\n5: 5\r\n6: 6\r\n7: 7\r\n8:\r\n9:";
+
+        $this->assertSame($result, $compiled);
+    }
+
+    public function testPileOnto(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $blockWorld->moveOnto(9, 1);
+        $blockWorld->moveOver(2, 1);
+        $blockWorld->moveOver(3, 7);
+        $blockWorld->moveOver(8, 1);
+        $blockWorld->pileOver(9, 4);
+        $blockWorld->pileOnto(9, 1);
+        $blockWorld->pileOnto(9, 7);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1\r\n2:\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7: 7 9 2 8\r\n8:\r\n9:";
+
+        $this->assertSame($result, $compiled);
+    }
+
+    public function testPrintingFile(): void
+    {
+        $blockWorld = new BlockWorld();
+
+        $input = "10\nmove 9 onto 1\nmove 8 over 1\nmove 7 over 1\nmove 6 over 1\npile 8 over 6\npile 8 over 5\nmove 2 over 1\nmove 4 over 9\nquit";
+
+        $this->assertSame($input, $blockWorld->printInput('input.txt'));
+    }
+
+    public function testOutput(): void
+    {
+        $blockWorld = new BlockWorld();
+
+        $output = "0: 0\r\n1: 1 9 2 4\r\n2:\r\n3: 3\r\n4:\r\n5: 5 8 7 6\r\n6:\r\n7:\r\n8:\r\n9:";
+
+        $this->assertSame($output, $blockWorld->readTxtFile('input.txt'));
     }
 }

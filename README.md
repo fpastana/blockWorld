@@ -12,7 +12,7 @@
 
 ## Setting up the Input
 
-- Sample Input (.txt)
+- [Sample Input](https://github.com/fpastana/blockWorld/blob/main/input.txt)
 
 ```
 10
@@ -35,12 +35,12 @@ quit
 
 - Running the unit tests
 ```
-# phpunit tests/Unit/BlockWorldTest.php
+# ./vendor/bin/phpunit tests/Unit
 ```
 
 # About the APP
 
-Many areas of Computer Science use simple, abstract domains for both analytical and empirical studies. For example, an early Ai study of planning and robotics (STRIPS) used a block world in which a robot arm performed tasks involving the manipulation of blocks. 
+Many areas of Computer Science use simple, abstract domains for both analytical and empirical studies. For example, an early AI study of planning and robotics (STRIPS) used a block world in which a robot arm performed tasks involving the manipulation of blocks. 
 
 The app will model a simple block world under certain rules and constrains. Rather than determine how to achieve a specific state, it will "program" a robotic arm to respond to a limited set of commands.  
 
