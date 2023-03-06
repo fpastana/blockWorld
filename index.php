@@ -2,14 +2,11 @@
 
 class BlockWorld 
 {
-    private int $n;
     private array $blocks = [];
 
     public function __construct(int $n)
     {
-        $this->n = $n-1;
-
-        for ($i=0; $i<=$this->n; $i++) {
+        for ($i=0; $i<=$n-1; $i++) {
             $this->blocks[$i]['stack'][$i] = $i;
         }
     }
@@ -57,6 +54,17 @@ class BlockWorld
             return;
 
         $blockDestination = $this->retrieveBlockDestination($a, $b);
+
+        foreach ($this->blocks as $ind => $block) {
+            array_walk($this->blocks[$ind], ['BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['b' => $b]); 
+        }
+
+        foreach ($this->blocks as $ind => $block) {
+            array_walk($this->blocks[$ind], ['BlockWorld', 'unsetAndRelocateNewStack'], ['a' => $a, 'b' => $b]);
+        }
+
+        unset($this->blocks[$a]['stack'][$a]);
+        $this->blocks[$blockDestination]['stack'][$a] = $a;
     }
 
     public function pileOver(int $a, int $b): void
@@ -66,7 +74,7 @@ class BlockWorld
 
         $blockDestination = $this->retrieveBlockDestination($a, $b);
 
-        foreach ($this->blocks as $ind => $block) {   
+        foreach ($this->blocks as $ind => $block) {
             array_walk($this->blocks[$ind], ['BlockWorld', 'unsetAndRelocateNewStack'], ['a' => $a, 'b' => $b]);
         }
 

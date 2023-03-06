@@ -10,7 +10,7 @@
 
 # Setting up the Input
 
--   .txt file
+- Sample Input
 
 ```
 10
