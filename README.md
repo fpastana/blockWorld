@@ -1,6 +1,7 @@
 ## Technology Stack
 
 - [PHP 8.2.2](https://php.net): Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.
+- [Composer 2.5.3](https://getcomposer.org): A Dependency Manager for PHP.
 
 ##  Install the composer packages:
 
@@ -8,9 +9,9 @@
 # composer install
 ```
 
-# Setting up the Input
+## Setting up the Input
 
-- Sample Input
+- Sample Input (.txt)
 
 ```
 10
@@ -23,6 +24,12 @@ pile 8 over 5
 move 2 over 1
 move 4 over 9 
 quit
+```
+
+- Running and reading the inputs from a file
+
+```
+# php index.php \path\to\the\file.txt
 ```
 
 # About the APP
