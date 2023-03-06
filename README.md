@@ -30,7 +30,7 @@ quit
 - Running and reading the inputs from a file
 
 ```
-php terminal.php file.txt
+php terminal.php input.txt
 ```
 
 - Running the unit tests
