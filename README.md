@@ -7,7 +7,7 @@
 ##  Install the composer packages:
 
 ```
-# composer install
+composer install
 ```
 
 ## Setting up the Input
@@ -30,12 +30,12 @@ quit
 - Running and reading the inputs from a file
 
 ```
-# php terminal.php \path\to\the\file.txt
+php terminal.php file.txt
 ```
 
 - Running the unit tests
 ```
-# ./vendor/bin/phpunit tests/Unit
+./vendor/bin/phpunit tests/Unit
 ```
 
 # About the APP
