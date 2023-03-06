@@ -3,12 +3,6 @@
 - [PHP 8.2.2](https://php.net): Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.
 - [Composer 2.5.3](https://getcomposer.org): A Dependency Manager for PHP.
 
-##  Install the composer packages:
-
-```
-# composer install
-```
-
 ## Setting up the Input
 
 - Sample Input (.txt)
