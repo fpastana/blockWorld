@@ -11,15 +11,15 @@ class BlockWorld
 
     public function __construct(int $n = 0)
     {
+        if ($n >= $this->sizeLimit) {
+            $n = $this->sizeLimit;
+        }
+
         for ($i=0; $i<=$n-1; $i++) {
             $this->blocks[$i]['stack'][$i] = $i;
         }
 
         $this->blocksSize = count($this->blocks);
-
-        if ($this->blocksSize >= $this->sizeLimit) {
-            throw new \Exception('Block size limit exceeded!');
-        }
     }
 
     public function moveOnto(int $a, int $b): void
