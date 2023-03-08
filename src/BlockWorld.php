@@ -113,10 +113,12 @@ class BlockWorld
         return trim($result);
     }
 
-    public function readTxtFile(string $txtAddress): ?string
+    public function readTxtFile(?string $txtAddress = null): ?string
     {
-        $i = 0;
+        if ($txtAddress === null)
+            return null;
 
+        $i = 0;
         $fh = fopen($txtAddress,'r');
         while ($command = fgets($fh)) {
             
@@ -156,8 +158,6 @@ class BlockWorld
             $i++;
         }
         fclose($fh);
-
-        return $blockWorld->quit();
     }
 
     public function printInput(string $txtAddress): string
