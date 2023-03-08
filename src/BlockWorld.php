@@ -104,7 +104,7 @@ class BlockWorld
         return trim($result);
     }
 
-    public function readTxtFile(string $txtAddress): ?string
+    public function readTxtFile(string $txtAddress): string
     {
         $i = 0;
 
@@ -147,8 +147,6 @@ class BlockWorld
             $i++;
         }
         fclose($fh);
-
-        return null;
     }
 
     public function printInput(string $txtAddress): string
