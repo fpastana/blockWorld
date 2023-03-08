@@ -14,6 +14,28 @@ final class BlockWorldTest extends TestCase
         $this->assertSame('', $result);
     }
 
+    public function testMoveOnto(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $blockWorld->moveOnto(9, 1);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1 9\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7: 7\r\n8: 8\r\n9:";
+
+        $this->assertSame($result, $compiled);
+    }
+
+    public function testMoveOntoWhenInconsistencyFound(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $blockWorld->moveOnto(9, 1);
+        $blockWorld->moveOnto(8, 8);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1 9\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7: 7\r\n8: 8\r\n9:";
+        $this->assertSame($result, $compiled);
+    }
+
     public function testBlockWorldWhenBlocksDifferentThanNull(): void
     {
         $blockWorld = new BlockWorld(10);
@@ -24,14 +46,42 @@ final class BlockWorldTest extends TestCase
         $this->assertSame($result, $compiled);
     }
 
-    public function testMoveOnto(): void
+    public function testMoveOntoWhenAAndBOnTheSameStack(): void
     {
         $blockWorld = new BlockWorld(10);
         $blockWorld->moveOnto(9, 1);
+        $blockWorld->moveOver(8, 1);
+        $blockWorld->moveOver(7, 1);
+        $blockWorld->moveOnto(8, 7);
         $compiled = $blockWorld->quit();
 
-        $result = "0: 0\r\n1: 1 9\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7: 7\r\n8: 8\r\n9:";
+        $result = "0: 0\r\n1: 1 9 8 7\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7:\r\n8:\r\n9:";
+        $this->assertSame($result, $compiled);
+    }
 
+    public function testMoveOverWhenInconsistencyFound(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $blockWorld->moveOnto(9, 1);
+        $blockWorld->moveOver(8, 1);
+        $blockWorld->moveOver(8, 8);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1 9 8\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7: 7\r\n8:\r\n9:";
+
+        $this->assertSame($result, $compiled);
+    }
+
+    public function testMoveOverWhenAAndBOnTheSameStack(): void
+    {
+        $blockWorld = new BlockWorld(10);
+        $blockWorld->moveOver(9, 1);
+        $blockWorld->moveOver(8, 1);
+        $blockWorld->moveOver(7, 1);
+        $blockWorld->moveOver(8, 7);
+        $compiled = $blockWorld->quit();
+
+        $result = "0: 0\r\n1: 1 9 8 7\r\n2: 2\r\n3: 3\r\n4: 4\r\n5: 5\r\n6: 6\r\n7:\r\n8:\r\n9:";
         $this->assertSame($result, $compiled);
     }
 
