@@ -11,6 +11,6 @@ if (!isset($argv[1])) {
 
 $blockWorld = new BlockWorld();
 echo 'Input: ' . "\r\n";
-echo $blockWorld->printInput($argv[1], true);
+echo $blockWorld->printInput($argv[1]);
 echo "\r\n\r\n" . 'Output: ' . "\r\n";
-echo $blockWorld->readTxtFile($argv[1], true);
+echo $blockWorld->readTxtFile($argv[1]);
