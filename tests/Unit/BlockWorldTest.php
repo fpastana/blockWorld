@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 
 use BlockWorld\Library\BlockWorld;
-use SebastianBergmann\Type\VoidType;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class BlockWorldTest extends TestCase
 {
@@ -210,25 +210,35 @@ final class BlockWorldTest extends TestCase
         $this->assertSame($output, $blockWorld->readTxtFile('input.txt'));
     }
 
-    public function testGetBlocks(): void
+    /**
+     * @dataProvider blocksData
+     */
+    public function testGetBlocks(array $blocks): void
     {
         $blockWorld = new BlockWorld(10);
         $blockWorld->moveOnto(9, 1);
 
-        $result = [
-            0 => [ 'stack' => [ 0 => 0 ]],
-            1 => [ 'stack' => [ 1 => 1, 9 => 9 ]],
-            2 => [ 'stack' => [ 2 => 2 ]],
-            3 => [ 'stack' => [ 3 => 3 ]],
-            4 => [ 'stack' => [ 4 => 4 ]],
-            5 => [ 'stack' => [ 5 => 5 ]],
-            6 => [ 'stack' => [ 6 => 6 ]],
-            7 => [ 'stack' => [ 7 => 7 ]],
-            8 => [ 'stack' => [ 8 => 8 ]],
-            9 => [ 'stack' => []],
-        ];
+        $this->assertSame($blocks, $blockWorld->getBlocks());
+    }
 
-        $this->assertSame($result, $blockWorld->getBlocks());
+    public static function blocksData(): array
+    {
+        return [
+                [
+                    [
+                        0 => [ 'stack' => [ 0 => 0 ]],
+                        1 => [ 'stack' => [ 1 => 1, 9 => 9 ]],
+                        2 => [ 'stack' => [ 2 => 2 ]],
+                        3 => [ 'stack' => [ 3 => 3 ]],
+                        4 => [ 'stack' => [ 4 => 4 ]],
+                        5 => [ 'stack' => [ 5 => 5 ]],
+                        6 => [ 'stack' => [ 6 => 6 ]],
+                        7 => [ 'stack' => [ 7 => 7 ]],
+                        8 => [ 'stack' => [ 8 => 8 ]],
+                        9 => [ 'stack' => []],
+                    ]
+                ]
+            ];
     }
 
     // public function testPrintingFile(): void
