@@ -1,8 +1,9 @@
 <?php
 
 namespace App;
+use App\BlockWorldInterface;
 
-class BlockWorld 
+class BlockWorld implements BlockWorldInterface
 {
     private array $blocks = [];
     private int $blocksSize;
