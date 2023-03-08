@@ -5,12 +5,15 @@ namespace App;
 class BlockWorld 
 {
     private array $blocks = [];
+    private int $blocksSize;
 
     public function __construct(int $n = 0)
     {
         for ($i=0; $i<=$n-1; $i++) {
             $this->blocks[$i]['stack'][$i] = $i;
         }
+
+        $this->blocksSize = count($this->blocks);
     }
 
     public function moveOnto(int $a, int $b): void
@@ -200,7 +203,7 @@ class BlockWorld
 
     private function checkInconsistency(int $a, int $b): bool
     {
-        if ($a === $b) {
+        if ($a === $b || $this->blocksSize < $a || $this->blocksSize < $b) {
             return true;
         }
 
