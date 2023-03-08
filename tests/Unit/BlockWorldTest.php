@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-use BlockWorld\Library\BlockWorld;
+use App\BlockWorld;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class BlockWorldTest extends TestCase

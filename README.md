@@ -46,3 +46,22 @@ The app will model a simple block world under certain rules and constrains. Rath
 
 This app parses a series of commands that instruct a robot arm to manipulate blocks that lie on a flat table. Initially there are n blocks on the table (numbered from 0 to n -1) with blocks bi adjacent to block bi+1 for all 0 <= i < n-1.
 
+The valid commands for the robot arm that manipulates blocks are:
+
+1. move "a" onto "b": where "a" and "b" are block numbers, puts block "a" onto block "b" after returning any blocks that are stacked on top of blocks "a" and "b" to their initial positions.
+
+2. move "a" over "b": where "a" and "b" are block numbers, puts block "a" onto the top of stack containing block "b", after returning any blocks that are stacked on top of block "a" to their initial positions.
+
+3. pile "a" onto "b": where "a" and "b" are block numbers, moves the pile of blocks consisting of block "a", and any blocks that are stacked above block "a", onto block "b". All blocks on top of block "b" are moved to their initial positions prior to the pile taking place. The blocks stacked above block "a" retain their order when moved.
+
+4. pile "a" over "b": where "a" and "b" are block numbers, puts the pile of blocks consisting of block "a", and any blocks that are stacked above block "a", onto the top of stack containing block "b". The blocks stacked above block "a" retain their original order when moved.
+
+5. quit: terminates manipulations in the bloc world.
+
+Any command in which a === b or in which "a" and "b" are in the same stack of blocks is an illegal command. All illegal commands should be ignored and should have no affect on the configuration of blocks
+
+> Input: The input begins with an integer "n" on a line by itself representing the number of blocks in the block world. You may assume that 0 < "n" < 25. 
+The number of blocks is followed by a sequence of blocks commands, one command per line. Your program should process all commands until the quit command is encountered. You may assume that all commands will be of the form specified above. There will be no syntactically incorrect commands. 
+
+> Output: The output should consist of the final state of the blocks world. Each original block position numbered "i" (0 <= "i" < "n" where "n" is the number of blocks) should appear followed immediately by a colon. If there is at least a block on it, the colon must be followed by one space, followed by a list of blocks that appear stacked in that position with each block number separated from other block numbers by a space. Don't put any trailing spaces on a line. There should be one line of output for each block position (i.e., n lines of output where n is the integer on the first line of input)
+

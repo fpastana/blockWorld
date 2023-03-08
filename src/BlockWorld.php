@@ -1,6 +1,6 @@
 <?php
 
-namespace BlockWorld\Library;
+namespace App;
 
 class BlockWorld 
 {
@@ -24,8 +24,8 @@ class BlockWorld
         $blockDestination = $this->retrieveBlockDestination($a, $b);
 
         foreach ($this->blocks as $ind => $block) {   
-            array_walk($this->blocks[$ind], ['BlockWorld\Library\BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['a' => $a]);
-            array_walk($this->blocks[$ind], ['BlockWorld\Library\BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['b' => $b]);
+            array_walk($this->blocks[$ind], ['App\BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['a' => $a]);
+            array_walk($this->blocks[$ind], ['App\BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['b' => $b]);
         }
 
         unset($this->blocks[$a]['stack'][$a]);
@@ -43,7 +43,7 @@ class BlockWorld
         $blockDestination = $this->retrieveBlockDestination($a, $b);
 
         foreach ($this->blocks as $ind => $block) {   
-            array_walk($this->blocks[$ind], ['BlockWorld\Library\BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['a' => $a]);
+            array_walk($this->blocks[$ind], ['App\BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['a' => $a]);
         }
 
         unset($this->blocks[$a]['stack'][$a]);
@@ -58,11 +58,11 @@ class BlockWorld
         $blockDestination = $this->retrieveBlockDestination($a, $b);
 
         foreach ($this->blocks as $ind => $block) {
-            array_walk($this->blocks[$ind], ['BlockWorld\Library\BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['b' => $b]); 
+            array_walk($this->blocks[$ind], ['App\BlockWorld', 'unsetAndReturnStackToInitialPositions'], ['b' => $b]); 
         }
 
         foreach ($this->blocks as $ind => $block) {
-            array_walk($this->blocks[$ind], ['BlockWorld\Library\BlockWorld', 'unsetAndRelocateNewStack'], ['a' => $a, 'b' => $b]);
+            array_walk($this->blocks[$ind], ['App\BlockWorld', 'unsetAndRelocateNewStack'], ['a' => $a, 'b' => $b]);
         }
 
         unset($this->blocks[$a]['stack'][$a]);
@@ -77,7 +77,7 @@ class BlockWorld
         $blockDestination = $this->retrieveBlockDestination($a, $b);
 
         foreach ($this->blocks as $ind => $block) {
-            array_walk($this->blocks[$ind], ['BlockWorld\Library\BlockWorld', 'unsetAndRelocateNewStack'], ['a' => $a, 'b' => $b]);
+            array_walk($this->blocks[$ind], ['App\BlockWorld', 'unsetAndRelocateNewStack'], ['a' => $a, 'b' => $b]);
         }
 
         unset($this->blocks[$a]['stack'][$a]);

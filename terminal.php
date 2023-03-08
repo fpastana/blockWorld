@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use BlockWorld\Library\BlockWorld;
+use App\BlockWorld;
 
 if (!isset($argv[1])) {
     echo "\r\n" . 'Warning: It is necessary to provide a .txt file with the correct input!' . "\r\n\r\n";

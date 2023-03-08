@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use BlockWorld\Library\BlockWorld;
+use App\BlockWorld;
 
 $blockWorld = new BlockWorld(10);
 $blockWorld->moveOnto(9, 1);
